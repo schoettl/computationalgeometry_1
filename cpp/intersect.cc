@@ -1,6 +1,10 @@
 #include <iostream>
+#include <cmath>
+// `grep -r abs\(double /usr/include` helped :)
 #include <vector>
 #include <algorithm>
+
+#define EPSILON 0.001
 
 using namespace std;
 
@@ -8,6 +12,8 @@ using namespace std;
 // inRange(const double& x, ...)
 //  same in Point constructor
 //  same in Line constructor
+//  ...
+// g++ mit bester Optimierungsstufe aufrufen
 // run this: <s_100_1.dat time parallel --pipe --block <default=1M> intersect | awk '{s+=$0} END {print s}'
 // $(($(stat -c%s s_100_1.dat)/2))
 // mist, nein, das geht nicht, weil wenn input file aufgeteilt wird, haben wir ja nicht mehr alle kombinationen!
@@ -15,6 +21,18 @@ using namespace std;
 
 bool inRange(double x, double a, double b) {
 	return x >= min(a, b) && x <= max(a, b);
+}
+
+bool isGreaterThanZero(double x) {
+return x > -EPSILON;
+}
+
+bool isLessThanZero(double x) {
+return x < EPSILON;
+}
+
+bool isEqualToZero(double x) {
+return abs(x) < EPSILON;
 }
 
 struct Point {
