@@ -65,14 +65,13 @@ struct Line {
 };
 	
 int main(int argc, char *argv[]) {
-vector<Line>::size_type outerLoopIterationCount = vector<Line>::max_size;
-string argument;
-while (getopts("n:", argc, argv, &argument)) {
-    switch (c) {
-        case "n": outerLoopIterationCount = argument;
-            break;
-    }
-}
+	vector<Line>::size_type outerLoopIterationCount = ;
+	string argument;
+	while (getopts("n:", argc, argv, &argument)) {
+		switch (c) {
+			case "n": outerLoopIterationCount = argument; break;
+		}
+	}
 
 	vector<Line> lines;
 	double x1, y1, x2, y2;
@@ -82,9 +81,11 @@ while (getopts("n:", argc, argv, &argument)) {
 	}
 
 	int intersectCount = 0;
-vector<Line>::size_type outerLoopCounter = 0;
+	vector<Line>::size_type outerLoopCounter = 0;
 	for (vector<Line>::iterator it = lines.begin();
-outerLoopCounter < outerLoopIterationCount && it != lines.end(); it++) {
+		outerLoopCounter < outerLoopIterationCount
+		&& it != lines.end(); it++) {
+
 		vector<Line>::iterator jt = it;
 		jt++;
 		for (; jt != lines.end(); jt++)
@@ -92,7 +93,7 @@ outerLoopCounter < outerLoopIterationCount && it != lines.end(); it++) {
 			if (it->intersect(*jt))
 				intersectCount++;
 		}
-outerLoopCounter++;
+		outerLoopCounter++;
 	}
 	cout << intersectCount << endl;
 	return 0;
