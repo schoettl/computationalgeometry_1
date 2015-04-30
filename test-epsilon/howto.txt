@@ -1,0 +1,7 @@
+# in test-epsilon (before debug output...)
+test/run-intersect.sh c 2 > test-epsilon/eps-1e-1.txt
+for f in *.txt; do echo $f; awk 'NR==2||NR==3' $f; done
+
+# in . (bei unterschiedlichen epsilons)
+test/run-intersect.sh c 1 2> debug-1e-1.txt
+< debug-1e-1.txt | grep -e '^[[:digit:]]' | cut -d\  -f9- | sort | uniq -c | sort -n > debug-hist-1e-5.txt
