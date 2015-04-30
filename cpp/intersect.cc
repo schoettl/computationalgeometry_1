@@ -1,10 +1,7 @@
 #include <iostream>
 #include <cmath>
-// `grep -r abs\(double /usr/include` helped :)
 #include <vector>
 #include <algorithm>
-
-#define EPSILON 0.001
 
 using namespace std;
 
@@ -19,20 +16,26 @@ using namespace std;
 // mist, nein, das geht nicht, weil wenn input file aufgeteilt wird, haben wir ja nicht mehr alle kombinationen!
 // run this: <s_100_1.dat time parallel --pipe intersect | awk '{s+=$0} END {print s}'
 
+const double epsilon = 1e-3;
+
 bool inRange(double x, double a, double b) {
-	return x >= min(a, b) && x <= max(a, b);
-}
-
-bool isGreaterThanZero(double x) {
-return x > -EPSILON;
-}
-
-bool isLessThanZero(double x) {
-return x < EPSILON;
+	return x >= (min(a, b) - epsilon) && x <= (max(a, b) + epsilon);
 }
 
 bool isEqualToZero(double x) {
-return abs(x) < EPSILON;
+	return abs(x) <= epsilon;
+}
+
+bool isGreaterThanZero(double x) {
+	return x > epsilon;
+}
+
+bool isLessThanZero(double x) {
+	return x < -epsilon;
+}
+
+bool isLessThanOrEqualToZero(double x) {
+	return x <= epsilon;
 }
 
 struct Point {
@@ -53,27 +56,27 @@ struct Line {
 		const double ccwEnd   = ccw(otherLine.e);
 
 		// Both ends of other line at one side?
-		if (ccwStart * ccwEnd > 0)
+		if (isGreaterThanZero(ccwStart * ccwEnd))
 			return false;
 
 		// Both ends of other line are at different sides?
-		if (ccwStart * ccwEnd < 0) {
+		if (isLessThanZero(ccwStart * ccwEnd)) {
 
 			// Both ends of this line are at different sides
 			// or exactly one end of other line is on this line?
 			// ("exactly one", because otherwise we would not be here)
-			if (otherLine.ccw(s) * otherLine.ccw(e) <= 0)
+			if (isLessThanOrEqualToZero(otherLine.ccw(s) * otherLine.ccw(e)))
 				return true;
 			else
 				return false;
 		}
 
-		if (ccwStart == 0
+		if (isEqualToZero(ccwStart)
 			&& inRange(otherLine.s.x, s.x, e.x)
 			&& inRange(otherLine.s.y, s.y, e.y))
 			return true;
 
-		if (ccwEnd == 0
+		if (isEqualToZero(ccwEnd)
 			&& inRange(otherLine.e.x, s.x, e.x)
 			&& inRange(otherLine.e.y, s.y, e.y))
 			return true;
