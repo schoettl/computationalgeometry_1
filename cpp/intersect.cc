@@ -28,11 +28,11 @@ bool isEqualToZero(double x) {
 }
 
 bool isGreaterThanZero(double x) {
-	return x > epsilon;
+	return x > 0;
 }
 
 bool isLessThanZero(double x) {
-	return x < -epsilon;
+	return x < 0;
 }
 
 bool isLessThanOrEqualToZero(double x) {

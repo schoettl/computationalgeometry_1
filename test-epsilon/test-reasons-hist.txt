@@ -3,41 +3,40 @@ test-reasons-hist-1e-10       7 startpoint of other on this line: true
 test-reasons-hist-1e-10    1000 otherwise: false
 test-reasons-hist-1e-10    1589 not parallel, no intersect: false
 test-reasons-hist-1e-10  497900 both ends of other line on one side: false
-test-reasons-hist-1e-1       7 endpoint of other on this line: true
-test-reasons-hist-1e-1      11 not parallel, no intersect: false
-test-reasons-hist-1e-1      16 startpoint of other on this line: true
-test-reasons-hist-1e-1   11452 otherwise: false
-test-reasons-hist-1e-1  489014 both ends of other line on one side: false
-test-reasons-hist-1e-2       1 clearly intersect: true
-test-reasons-hist-1e-2       1 endpoint of other on this line: true
-test-reasons-hist-1e-2       8 startpoint of other on this line: true
-test-reasons-hist-1e-2     572 not parallel, no intersect: false
-test-reasons-hist-1e-2    4446 otherwise: false
-test-reasons-hist-1e-2  495472 both ends of other line on one side: false
+test-reasons-hist-1e-1       7 startpoint of other on this line: true
+test-reasons-hist-1e-1      27 clearly intersect: true
+test-reasons-hist-1e-1    1000 otherwise: false
+test-reasons-hist-1e-1    1566 not parallel, no intersect: false
+test-reasons-hist-1e-1  497900 both ends of other line on one side: false
+test-reasons-hist-1e-2       7 startpoint of other on this line: true
+test-reasons-hist-1e-2      10 clearly intersect: true
+test-reasons-hist-1e-2    1000 otherwise: false
+test-reasons-hist-1e-2    1583 not parallel, no intersect: false
+test-reasons-hist-1e-2  497900 both ends of other line on one side: false
 test-reasons-hist-1e-3       6 clearly intersect: true
 test-reasons-hist-1e-3       7 startpoint of other on this line: true
-test-reasons-hist-1e-3    1255 not parallel, no intersect: false
-test-reasons-hist-1e-3    1939 otherwise: false
-test-reasons-hist-1e-3  497293 both ends of other line on one side: false
+test-reasons-hist-1e-3    1000 otherwise: false
+test-reasons-hist-1e-3    1587 not parallel, no intersect: false
+test-reasons-hist-1e-3  497900 both ends of other line on one side: false
 test-reasons-hist-1e-4       4 clearly intersect: true
 test-reasons-hist-1e-4       7 startpoint of other on this line: true
-test-reasons-hist-1e-4    1200 otherwise: false
-test-reasons-hist-1e-4    1522 not parallel, no intersect: false
-test-reasons-hist-1e-4  497767 both ends of other line on one side: false
+test-reasons-hist-1e-4    1000 otherwise: false
+test-reasons-hist-1e-4    1589 not parallel, no intersect: false
+test-reasons-hist-1e-4  497900 both ends of other line on one side: false
 test-reasons-hist-1e-5       4 clearly intersect: true
 test-reasons-hist-1e-5       7 startpoint of other on this line: true
-test-reasons-hist-1e-5    1042 otherwise: false
-test-reasons-hist-1e-5    1572 not parallel, no intersect: false
-test-reasons-hist-1e-5  497875 both ends of other line on one side: false
+test-reasons-hist-1e-5    1000 otherwise: false
+test-reasons-hist-1e-5    1589 not parallel, no intersect: false
+test-reasons-hist-1e-5  497900 both ends of other line on one side: false
 test-reasons-hist-1e-6       4 clearly intersect: true
 test-reasons-hist-1e-6       7 startpoint of other on this line: true
-test-reasons-hist-1e-6    1007 otherwise: false
-test-reasons-hist-1e-6    1584 not parallel, no intersect: false
-test-reasons-hist-1e-6  497898 both ends of other line on one side: false
+test-reasons-hist-1e-6    1000 otherwise: false
+test-reasons-hist-1e-6    1589 not parallel, no intersect: false
+test-reasons-hist-1e-6  497900 both ends of other line on one side: false
 test-reasons-hist-1e-7       4 clearly intersect: true
 test-reasons-hist-1e-7       7 startpoint of other on this line: true
-test-reasons-hist-1e-7    1002 otherwise: false
-test-reasons-hist-1e-7    1587 not parallel, no intersect: false
+test-reasons-hist-1e-7    1000 otherwise: false
+test-reasons-hist-1e-7    1589 not parallel, no intersect: false
 test-reasons-hist-1e-7  497900 both ends of other line on one side: false
 test-reasons-hist-1e-8       4 clearly intersect: true
 test-reasons-hist-1e-8       7 startpoint of other on this line: true
