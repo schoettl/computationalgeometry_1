@@ -48,6 +48,13 @@ struct Line {
 	Point s; // start point
 	Point e; // end point
 	Line(double sx, double sy, double ex, double ey) : s(sx, sy), e(ex, ey) { }
+	void debugLog(const Line& otherLine, const string& text) const {
+		 cerr << s.x << " " << s.y << " "
+		      << e.x << " " << e.y << " "
+		      << otherLine.s.x << " " << otherLine.s.y << " "
+		      << otherLine.e.x << " " << otherLine.e.y << " "
+		      << text << endl;
+	}
 	double ccw(const Point& p) const {
 		return (s.x*e.y - s.y*e.x) + (e.x*p.y - e.y*p.x) + (s.y*p.x - s.x*p.y);
 	}
@@ -57,7 +64,7 @@ struct Line {
 
 		// Both ends of other line at one side?
 		if (isGreaterThanZero(ccwStart * ccwEnd)) {
-			cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "both ends of other line on one side: false" << endl;
+			debugLog(otherLine, "both ends of other line on one side: false");
 			return false;
 		}
 
@@ -68,11 +75,11 @@ struct Line {
 			// or exactly one end of other line is on this line?
 			// ("exactly one", because otherwise we would not be here)
 			if (isLessThanOrEqualToZero(otherLine.ccw(s) * otherLine.ccw(e))) {
-				cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "clearly intersect: true" << endl;
+				debugLog(otherLine, "clearly intersect: true" );
 				return true;
 			}
 			else {
-				cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "nicht parallel, aber kein intersect: false" << endl;
+				debugLog(otherLine, "not parallel, no intersect: false");
 				return false;
 			}
 		}
@@ -80,18 +87,18 @@ struct Line {
 		if (isEqualToZero(ccwStart)
 			&& inRange(otherLine.s.x, s.x, e.x)
 			&& inRange(otherLine.s.y, s.y, e.y)) {
-			cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "startpoint of other on this line: true" << endl;
+			debugLog(otherLine, "startpoint of other on this line: true");
 			return true;
 		}
 
 		if (isEqualToZero(ccwEnd)
 			&& inRange(otherLine.e.x, s.x, e.x)
 			&& inRange(otherLine.e.y, s.y, e.y)) {
-			cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "endpoint of other on this line: true" << endl;
+			debugLog(otherLine, "endpoint of other on this line: true");
 			return true;
 		}
 
-		cerr << s.x << " " << s.y << " " << e.x << " " << e.y << " " << otherLine.s.x << " " << otherLine.s.y << " " << otherLine.e.x << " " << otherLine.e.y << " " << "otherwise: false" << endl;
+		debugLog(otherLine, "otherwise: false");
 		return false;
 	}
 };
