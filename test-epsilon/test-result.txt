@@ -1,0 +1,10 @@
+test-result-1e-10 11
+test-result-1e-1 23
+test-result-1e-2 10
+test-result-1e-3 13
+test-result-1e-4 11
+test-result-1e-5 11
+test-result-1e-6 11
+test-result-1e-7 11
+test-result-1e-8 11
+test-result-1e-9 11
