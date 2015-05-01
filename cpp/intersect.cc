@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <limits>
 #include <vector>
 #include <algorithm>
 
@@ -16,7 +17,7 @@ using namespace std;
 // mist, nein, das geht nicht, weil wenn input file aufgeteilt wird, haben wir ja nicht mehr alle kombinationen!
 // run this: <s_100_1.dat time parallel --pipe intersect | awk '{s+=$0} END {print s}'
 
-const double epsilon = 1e-3;
+const double epsilon = numeric_limits<double>::epsilon();
 
 bool inRange(double x, double a, double b) {
 	return x >= (min(a, b) - epsilon) && x <= (max(a, b) + epsilon);
