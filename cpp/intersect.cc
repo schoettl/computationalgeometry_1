@@ -20,19 +20,11 @@ using namespace std;
 const double epsilon = numeric_limits<double>::epsilon();
 
 bool inRange(double x, double a, double b) {
-	return x >= (min(a, b) - epsilon) && x <= (max(a, b) + epsilon);
+	return x >= min(a, b) && x <= max(a, b);
 }
 
 bool isEqualToZero(double x) {
 	return abs(x) <= epsilon;
-}
-
-bool isGreaterThanZero(double x) {
-	return x > 0;
-}
-
-bool isLessThanZero(double x) {
-	return x < 0;
 }
 
 bool isLessThanOrEqualToZero(double x) {
@@ -64,13 +56,13 @@ struct Line {
 		const double ccwEnd   = ccw(otherLine.e);
 
 		// Both ends of other line at one side?
-		if (isGreaterThanZero(ccwStart * ccwEnd)) {
+		if (ccwStart * ccwEnd > 0) {
 			debugLog(otherLine, "both ends of other line on one side: false");
 			return false;
 		}
 
 		// Both ends of other line are at different sides?
-		if (isLessThanZero(ccwStart * ccwEnd)) {
+		if (ccwStart * ccwEnd < 0) {
 
 			// Both ends of this line are at different sides
 			// or exactly one end of other line is on this line?
@@ -78,8 +70,7 @@ struct Line {
 			if (isLessThanOrEqualToZero(otherLine.ccw(s) * otherLine.ccw(e))) {
 				debugLog(otherLine, "clearly intersect: true" );
 				return true;
-			}
-			else {
+			} else {
 				debugLog(otherLine, "not parallel, no intersect: false");
 				return false;
 			}
