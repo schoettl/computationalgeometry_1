@@ -88,3 +88,22 @@ Maschinenengenauigkeit und Epsilon
 ----------------------------------
 
 
+Parallelisierbarkeit
+--------------------
+
+Wir haben uns auch noch Gedanken gemacht, wie die Rechenzeit verkürzt
+werden könnte, mit möglichst geringen Eingriffen in das Programm.  Eine gute
+und einfache Möglichkeit wäre, dem Programm einen Kommandozeilenparameter
+mitzugeben, der sagt bis zu welcher Zeile in der Eingabedatei die äußere
+Schleife laufen soll.  Die äußere Schleife, ist die, die nacheinander eine
+Strecke herausgreift und gegen alle folgenden Strecken auf Schnittpunkte testet.
+
+Angenommen, die Eingabedatei `test.dat` hat 1000 Zeilen. Dann kann das
+Programm auf einem Zweikernprozessor wie folgt parallel gestartet werden:
+
+1. ./intersect -l 300 < test.dat
+2. awk 'NR>300' test.dat | ./intersect
+
+Dieser Ansatz kann für beliebig viele Prozessoren erweitert werden.
+Die Zahlen sind aber hier rein geschätzt, lassen sich aber natürlich
+auch sinnvoll berechnen.
