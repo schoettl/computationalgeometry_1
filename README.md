@@ -45,7 +45,9 @@ Test der Programme
 ------------------
 
 Anhand einer kleinen Beispieldatei haben wir unser Programm getestet:
-`data/test.dat`.
+`data/test.dat`.  Hier eine Visualisierung; alle Punkte ist allerdings
+um einen zufälligen kleinen Wert verschoben, damit es keine vollkommenen
+Überlappungen gibt.
 
 ![Beispieldatei](test/test.png)
 
@@ -71,7 +73,7 @@ dem Makefile reproduziert werden.
 Die Laufzeit von Haskell hat uns anfangs Schwierigkeiten bereitet, da sie
 nicht quadratische Laufzeit sondern O(n^4) hatte.  Und das, obwohl ich nur
 *nacheinander* (nicht verschachtelt) zwei Funktionen quadratischer Laufzeit
-verwendet habe.  Grund war, dass die erste Funktion eine Liste mit n^2
+verwendet habe.  Grund war, dass die erste Funktion eine Liste mit n^2 Elementen
 erzeugt hat, und auf diese neue, viel längere Liste wurde die zweite Funktion
 losgelassen.  Damit ist die Laufzeit dann natürlich O((n^2)^2) = O(n^4).
 Jetzt ist es natürlich schlauer implementiert.  Vgl. ....
@@ -161,8 +163,8 @@ Strecke herausgreift und gegen alle folgenden Strecken auf Schnittpunkte testet.
 Angenommen, die Eingabedatei `test.dat` hat 1000 Zeilen. Dann kann das
 Programm auf einem Zweikernprozessor wie folgt parallel gestartet werden:
 
-1. ./intersect -l 300 < test.dat
-2. awk 'NR>300' test.dat | ./intersect
+1. `./intersect -l 300 < test.dat`
+2. `awk 'NR>300' test.dat | ./intersect`
 
 Dieser Ansatz kann für beliebig viele Prozessoren erweitert werden.
 Die Zahlen sind aber hier rein geschätzt, lassen sich aber natürlich
@@ -178,7 +180,8 @@ real    14m38.739s
 user    14m36.677s
 sys     0m0.028s
 
-$ time cpp/intersect -l 30000 < data/s_100000_1.dat & awk 'NR>30000' data/s_100000_1.dat | time cpp/intersect &
+$ time cpp/intersect -l 30000 < data/s_100000_1.dat & \
+> awk 'NR>30000' data/s_100000_1.dat | time cpp/intersect &
 [1] 5204
 [2] 5207
 
@@ -204,4 +207,4 @@ Siehe da, die Schätzung für die Aufteilung der Datei (30 zu 70 Prozent)
 passt sehr gut.  Die zwei Prozesse werden fast gleichzeitig fertig und
 laufen statt 14 Minuten nur 7 Minuten.  Und das Tollste: Die Summe der
 beiden Ergebnisse der parallel gestarteten Prozesse ergibt dasselbe
-Ergebnis wie oben :)
+Ergebnis wie oben :-)
