@@ -83,6 +83,62 @@ Ergebnisse
 
 Beide unsere Implementierungen kommen auf die gleichen Ergebnisse:
 
+C++-Programm:
+```
+processing data/s_100000_1.dat
+77126
+
+real    14m31.288s
+user    14m29.221s
+sys     0m0.045s
+processing data/s_10000_1.dat
+732
+
+real    0m8.640s
+user    0m8.591s
+sys     0m0.008s
+processing data/s_1000_1.dat
+11
+
+real    0m0.134s
+user    0m0.101s
+sys     0m0.002s
+processing data/test.dat
+8
+
+real    0m0.010s
+user    0m0.002s
+sys     0m0.002s
+```
+
+Haskell-Programm:
+```
+processing data/s_100000_1.dat
+77126
+
+real    45m11.446s
+user    44m53.759s
+sys     0m7.507s
+processing data/s_10000_1.dat
+732
+
+real    0m17.407s
+user    0m17.268s
+sys     0m0.088s
+processing data/s_1000_1.dat
+11
+
+real    0m0.175s
+user    0m0.149s
+sys     0m0.024s
+processing data/test.dat
+8
+
+real    0m0.008s
+user    0m0.004s
+sys     0m0.004s
+```
+
 
 Maschinenengenauigkeit und Epsilon
 ----------------------------------
