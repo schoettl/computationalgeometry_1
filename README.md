@@ -76,7 +76,8 @@ nicht quadratische Laufzeit sondern O(n^4) hatte.  Und das, obwohl ich nur
 verwendet habe.  Grund war, dass die erste Funktion eine Liste mit n^2 Elementen
 erzeugt hat, und auf diese neue, viel längere Liste wurde die zweite Funktion
 losgelassen.  Damit ist die Laufzeit dann natürlich O((n^2)^2) = O(n^4).
-Jetzt ist es natürlich schlauer implementiert.  Vgl. ....
+Jetzt ist es natürlich schlauer implementiert.
+Vgl. [Hilferuf per E-Mail](test-haskell-with-nubBy/Haskell_Programmlaufzeit.eml)
 Die Ergebnisse liegen in `test-haskell-with-nubBy/` und `test-haskell/`.
 
 
