@@ -47,7 +47,7 @@ Test der Programme
 Anhand einer kleinen Beispieldatei haben wir unser Programm getestet:
 `data/test.dat`.
 
-![Beispieldatei]()
+![Beispieldatei](test/test.png)
 
 Dazu wird das Skript `test/run-test.sh` verwendet, das unser Programm
 mit folgenden Eingaben testet:
@@ -56,7 +56,7 @@ mit folgenden Eingaben testet:
 * Dazu jeweils Anfang- und Endpunkte der Strecken in richtiger Reihenfolge
   aber auch vertauscht.
 
-Test erfolgreich: Es kommen immer acht Schnittpunkte heraus.
+Test erfolgreich: Es kommen immer die acht Schnittpunkte heraus.
 
 
 Laufzeituntersuchungen
@@ -84,6 +84,7 @@ Ergebnisse
 Beide unsere Implementierungen kommen auf die gleichen Ergebnisse:
 
 C++-Programm:
+
 ```
 processing data/s_100000_1.dat
 77126
@@ -112,6 +113,7 @@ sys     0m0.002s
 ```
 
 Haskell-Programm:
+
 ```
 processing data/s_100000_1.dat
 77126
@@ -144,13 +146,15 @@ Maschinenengenauigkeit und Epsilon
 ----------------------------------
 
 
+
+
 Parallelisierbarkeit
 --------------------
 
 Wir haben uns auch noch Gedanken gemacht, wie die Rechenzeit verkürzt
 werden könnte, mit möglichst geringen Eingriffen in das Programm.  Eine gute
 und einfache Möglichkeit wäre, dem Programm einen Kommandozeilenparameter
-mitzugeben, der sagt bis zu welcher Zeile in der Eingabedatei die äußere
+mitzugeben, der sagt, bis zu welcher Zeile der Eingabedatei, die äußere
 Schleife laufen soll.  Die äußere Schleife, ist die, die nacheinander eine
 Strecke herausgreift und gegen alle folgenden Strecken auf Schnittpunkte testet.
 
@@ -163,3 +167,41 @@ Programm auf einem Zweikernprozessor wie folgt parallel gestartet werden:
 Dieser Ansatz kann für beliebig viele Prozessoren erweitert werden.
 Die Zahlen sind aber hier rein geschätzt, lassen sich aber natürlich
 auch sinnvoll berechnen.
+
+Hier der Test unseres Ansatzes zur Parallelisierung (mit Vergleich):
+
+```
+$ time cpp/intersect < data/s_100000_1.dat
+77126
+
+real    14m38.739s
+user    14m36.677s
+sys     0m0.028s
+
+$ time cpp/intersect -l 30000 < data/s_100000_1.dat & awk 'NR>30000' data/s_100000_1.dat | time cpp/intersect &
+[1] 5204
+[2] 5207
+
+...
+
+[1]-  Fertig                  time cpp/intersect -l 30000 < data/s_100000_1.dat
+[2]+  Fertig                  awk 'NR>30000' data/s_100000_1.dat | time cpp/intersect
+```
+
+Ergebnisse:
+
+```
+[2] 7:18.30 min
+37880
+
+[1] 7:29.18 min
+39246
+
+37880 + 39246 = 77126
+```
+
+Siehe da, die Schätzung für die Aufteilung der Datei (30 zu 70 Prozent)
+passt sehr gut.  Die zwei Prozesse werden fast gleichzeitig fertig und
+laufen statt 14 Minuten nur 7 Minuten.  Und das Tollste: Die Summe der
+beiden Ergebnisse der parallel gestarteten Prozesse ergibt dasselbe
+Ergebnis wie oben :)
