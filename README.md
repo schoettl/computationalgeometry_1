@@ -153,9 +153,9 @@ Dieser Abschnitt gilt nur für das C++-Programm.
 
 Hier hatten wir so unsere Probleme:  Welches Zahl verwenden wir als Epsilon?
 Es gibt ja für die Gleitkommadatentypen eine Maschinengenauigkeit, in C++
-zum Beispiel `numeric_limits<double>::epsilon()`.  Um diese jedoch sinnvoll
+zum Beispiel `numeric_limits<double>::epsilon()`.  Um diese sinnvoll
 verwenden zu können, müsste man jedoch die Fehlerfortpflanzung betrachten.
-Bei Multiplikation hängt der Fehler des Ergebnisses auch stark vom absoluten
+Bei Multiplikation hängt der Fehler des Ergebnisses auch noch stark vom absoluten
 Zahlenwert ab.  Dieser Ansatz wurde hier nicht weiter verfolgt.
 
 Wir haben per Bash-Skript verschiedene feste Epsilon getestet (im Ordner
@@ -176,21 +176,26 @@ Anzahl der Schnittpunkte in Testdatei `data/s_1000_1.dat`.
 ```
 
 Bei kleinen Epsilon sieht man keinen Unterschied im Ergebnis, bei sehr großen
-Epsilon ab 0.001 werden erwartungsgemäß mehr Schnittpunkte gefunden.
+Epsilon ab 0.001 werden mehr Schnittpunkte gefunden.  Ob bei zu großen Epsilon
+mehr oder weniger Schnittpunkte gefunden werden, hängt vom Algorithmus und von
+der Reihenfolge der "return early" Statements ab.  Je nachdem, ob am Anfang des
+Codes eher ein Schnittpunkt ausgeschlossen wird, oder für einen trivialen Fall
+ein Schnittpunkt erkannt wird...
 
-Das Epsilon spielt bei folgenden Vergleichsoperationen eine Rolle:
-`==`, `>=`, `<=`.
+Das Epsilon spielt bei folgenden Vergleichsoperationen eine Rolle: `==`, `<=`,
+`>=`.  Hier haben wir die Funktionen `isEqualToZero` und
+`isLessThanOrEqualToZero` definiert. `>=` kommt im Algorithmus nicht vor und
+lässt sich ja auch als `<=` schreiben, indem die Operanden vertauscht werden.
 
-Hier haben wir die Funktionen `isEqualToZero` und `isLessThanOrEqualToZero`
-definiert.
-
-Werden, die eingelesen Daten direkt verwendet (`inRange`), verwenden wir normale
-Vergleiche (ohne Epsilon), da siebenstellige Daten ohne Fehler in
-double-Variablen eingelesen werden.  In allen Eingabedateien haben alle Zahlen
-maximal sieben Stellen:
+Werden die eingelesen Daten direkt verwendet, schreiben wir normale Vergleiche
+(ohne Epsilon), da achtstellige Daten ohne Fehler in double-Variablen
+eingelesen werden.  In allen Eingabedateien haben alle Zahlen maximal acht
+Stellen (Dezimalpunkt eingeschlossen):
 
     $ grep -E '[[:digit:].]{8,}' data/*.dat | wc -l
     0
+
+Normale Vergleiche kommen in der Funktion `inRange` zum Einsatz.
 
 
 Parallelisierbarkeit
