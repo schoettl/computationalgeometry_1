@@ -151,7 +151,7 @@ Maschinenengenauigkeit und Epsilon
 
 Dieser Abschnitt gilt nur für das C++-Programm.
 
-Hier hatten wir so unsere Probleme:  Welches Zahl verwenden wir als Epsilon?
+Hier hatten wir so unsere Probleme:  Welche Zahl verwenden wir als Epsilon?
 Es gibt ja für die Gleitkommadatentypen eine Maschinengenauigkeit, in C++
 zum Beispiel `numeric_limits<double>::epsilon()`.  Um diese sinnvoll
 verwenden zu können, müsste man jedoch die Fehlerfortpflanzung betrachten.
@@ -177,10 +177,10 @@ Anzahl der Schnittpunkte in Testdatei `data/s_1000_1.dat`.
 
 Bei kleinen Epsilon sieht man keinen Unterschied im Ergebnis, bei sehr großen
 Epsilon ab 0.001 werden mehr Schnittpunkte gefunden.  Ob bei zu großen Epsilon
-mehr oder weniger Schnittpunkte gefunden werden, hängt vom Algorithmus und von
-der Reihenfolge der "return early" Statements ab.  Je nachdem, ob am Anfang des
-Codes eher ein Schnittpunkt ausgeschlossen wird, oder für einen trivialen Fall
-ein Schnittpunkt erkannt wird...
+mehr oder weniger Schnittpunkte gefunden werden, hängt vielleicht vom
+Algorithmus und von der Reihenfolge der "return early" Statements ab.  Je
+nachdem, ob am Anfang des Codes eher ein Schnittpunkt ausgeschlossen wird, oder
+für einen trivialen Fall ein Schnittpunkt erkannt wird...
 
 Das Epsilon spielt bei folgenden Vergleichsoperationen eine Rolle: `==`, `<=`,
 `>=`.  Hier haben wir die Funktionen `isEqualToZero` und
@@ -201,12 +201,12 @@ Normale Vergleiche kommen in der Funktion `inRange` zum Einsatz.
 Parallelisierbarkeit
 --------------------
 
-Wir haben uns auch noch Gedanken gemacht, wie die Rechenzeit verkürzt
-werden könnte, mit möglichst geringen Eingriffen in das Programm.  Eine gute
-und einfache Möglichkeit wäre, dem Programm einen Kommandozeilenparameter
-mitzugeben, der sagt, bis zu welcher Zeile der Eingabedatei, die äußere
-Schleife laufen soll.  Die äußere Schleife, ist die, die nacheinander eine
-Strecke herausgreift und gegen alle folgenden Strecken auf Schnittpunkte testet.
+Wir haben uns auch noch Gedanken gemacht, wie die Rechenzeit mit möglichst
+geringen Eingriffen in das Programm verkürzt werden könnte.  Eine gute und
+einfache Möglichkeit wäre es, dem Programm einen Kommandozeilenparameter
+mitzugeben, der sagt, bis zu welcher Zeile der Eingabedatei die äußere Schleife
+laufen soll.  Die äußere Schleife ist die, die nacheinander eine Strecke
+herausgreift und gegen alle folgenden Strecken auf Schnittpunkte testet.
 
 Angenommen, die Eingabedatei `test.dat` hat 1000 Zeilen. Dann kann das
 Programm auf einem Zweikernprozessor wie folgt parallel gestartet werden:
@@ -215,7 +215,7 @@ Programm auf einem Zweikernprozessor wie folgt parallel gestartet werden:
 2. `awk 'NR>300' test.dat | ./intersect`
 
 Dieser Ansatz kann für beliebig viele Prozessoren erweitert werden.
-Die Zahlen sind aber hier rein geschätzt, lassen sich aber natürlich
+Die Zahlen sind hier rein geschätzt, lassen sich aber natürlich
 auch sinnvoll berechnen.
 
 Hier der Test unseres Ansatzes zur Parallelisierung (mit Vergleich):
