@@ -17,15 +17,15 @@ weitere Gruppe abhaken, bis alle Fälle behandelt waren.
 
 Wir haben hier nach dem Ansatz "return early" programmiert.  Dadurch ist der
 Code leicht zu lesen und nachzuvollziehen, weil mit jedem return-Statement
-ein weiterer Fall einfach abgeschlossen ist, und man diesen nicht mehr im
-Hinterkopf behalten muss.  Außerdem spart man sich Variablen und Einrückungen,
-was auch zu sauberem Code beiträgt.
+ein weiterer Fall abgeschlossen ist, und man diesen nicht mehr im Hinterkopf
+behalten muss.  Außerdem spart man sich Variablen und Einrückungen, was auch
+zu sauberem Code beiträgt.
 
 Das C++-Programm haben wir dann in die funktionale Programmiersprache Haskell
 übersetzt.  Der Algorithmus selbst ist in Haskell noch prägnanter; das
 Drumherum war eine größere Herausforderung.  Die Haskell-Implementierung
 liegt in `haskell/Main.hs`.  Als Build-System verwenden wir Cabal.  Mit
-`cabal build` in `haskell` sollte das Programm erzeugt werden.
+`cabal build` in `haskell/` sollte das Programm erzeugt werden.
 
 
 Aufruf der Programme
@@ -44,9 +44,9 @@ Test der Programme
 ------------------
 
 Anhand einer kleinen Beispieldatei haben wir unser Programm getestet:
-`data/test.dat`.  Hier eine Visualisierung; alle Punkte ist allerdings
-um einen zufälligen kleinen Wert verschoben, damit es keine vollkommenen
-Überlappungen gibt.
+`data/test.dat`.  Hier eine Visualisierung, in der alle Punkte -- nur
+für die Anzeige -- um einen zufälligen kleinen Wert verschoben sind
+(Jitter), damit es keine vollkommenen Überlappungen gibt.
 
 ![Beispieldatei](test/test.png)
 
